@@ -1,437 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inner Sanctuary - Your Safe Space</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Inner Sanctuary</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #8B7355 0%, #5C4033 50%, #3E2723 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
+      body {
+        font-family: "Georgia", serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-x: hidden;
+        position: relative;
+      }
 
-        /* Animated background particles */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            animation: shimmer 8s ease-in-out infinite;
-            pointer-events: none;
-        }
+      /* Background Video */
+      #bg-video {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        z-index: -2;
+        object-fit: cover;
+      }
 
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
+      /* Video Overlay for text readability */
+      .video-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+      }
 
+      /* Animated shimmer effect on top of video */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 50%,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 255, 255, 0.03) 0%,
+            transparent 50%
+          );
+        animation: shimmer 8s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 0.8;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+        padding: 60px 40px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .page-content-wrapper {
+        width: 100%;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 40px;
+      }
+
+      .content-card {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 20px;
+        width: 100%;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .title {
+        font-size: 3em;
+        color: #fff8e7;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+        letter-spacing: 2px;
+        animation: glow 3s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.3);
+        }
+        50% {
+          text-shadow: 2px 2px 30px rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      .subtitle {
+        font-size: 1.3em;
+        color: #e8d5c4;
+        font-style: italic;
+        margin-bottom: 10px;
+        opacity: 0.9;
+      }
+
+      .tagline {
+        font-size: 1em;
+        color: #d4bfa8;
+        opacity: 0.8;
+      }
+
+      .prompt-text {
+        text-align: center;
+        font-size: 1.8em;
+        color: #fff8e7;
+        margin-bottom: 40px;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .buttons-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 40px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (max-width: 768px) {
+        .buttons-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .sanctuary-button {
+        background: linear-gradient(
+          135deg,
+          rgba(139, 115, 85, 0.2) 0%,
+          rgba(92, 64, 51, 0.15) 100%
+        );
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 15px 25px;
+        color: #fff8e7;
+        font-size: 1.1em;
+        font-family: "Georgia", serif;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(255, 255, 255, 0.08);
+      }
+
+      .sanctuary-button::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.3) 0%,
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .sanctuary-button:hover {
+        box-shadow: 0 5px 35px rgba(255, 255, 255, 0.35);
+        border-color: rgba(255, 255, 255, 0.4);
+        background: linear-gradient(
+          135deg,
+          rgba(139, 115, 85, 0.25) 0%,
+          rgba(92, 64, 51, 0.2) 100%
+        );
+      }
+
+      .sanctuary-button:active::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .sanctuary-button:active {
+        transform: scale(0.98);
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-text {
+        color: #d4bfa8;
+        font-size: 0.95em;
+        opacity: 0.7;
+        font-style: italic;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
         .container {
-            max-width: 1200px;
-            width: 100%;
-            padding: 60px 40px;
-        }
-        
-        .page-content-wrapper {
-            width: 100%;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 40px;
-        }
-        
-        .content-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
+          padding: 40px 25px;
         }
 
         .title {
-            font-size: 3em;
-            color: #FFF8E7;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
-            letter-spacing: 2px;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.2); }
-            50% { text-shadow: 2px 2px 30px rgba(255, 255, 255, 0.3); }
-        }
-
-        .subtitle {
-            font-size: 1.3em;
-            color: #E8D5C4;
-            font-style: italic;
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-
-        .tagline {
-            font-size: 1em;
-            color: #D4BFA8;
-            opacity: 0.8;
+          font-size: 2.2em;
         }
 
         .prompt-text {
-            text-align: center;
-            font-size: 1.8em;
-            color: #FFF8E7;
-            margin-bottom: 40px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .buttons-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            margin-bottom: 40px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        @media (max-width: 768px) {
-            .buttons-grid {
-                grid-template-columns: 1fr;
-            }
+          font-size: 1.4em;
         }
 
         .sanctuary-button {
-            background: linear-gradient(135deg, rgba(139, 115, 85, 0.2) 0%, rgba(92, 64, 51, 0.15) 100%);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 15px 25px;
-            color: #FFF8E7;
-            font-size: 1.1em;
-            font-family: 'Georgia', serif;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(255, 255, 255, 0.08);
+          font-size: 1.1em;
+          padding: 15px 20px;
         }
+      }
 
-        .sanctuary-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
+      /* Smooth page transitions */
+      .page {
+        display: none;
+        animation: fadeIn 0.6s ease-out;
+      }
 
-        .sanctuary-button:hover {
-            box-shadow: 0 5px 35px rgba(255, 255, 255, 0.35);
-            border-color: rgba(255, 255, 255, 0.4);
-            background: linear-gradient(135deg, rgba(139, 115, 85, 0.25) 0%, rgba(92, 64, 51, 0.2) 100%);
-        }
+      .page.active {
+        display: block;
+      }
 
-        .sanctuary-button:active::before {
-            width: 300px;
-            height: 300px;
-        }
+      .back-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 15px 30px;
+        color: #fff8e7;
+        font-size: 1.1em;
+        font-family: "Georgia", serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 30px;
+        display: inline-block;
+      }
 
-        .sanctuary-button:active {
-            transform: scale(0.98);
-        }
+      .back-button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(-5px);
+      }
 
+      .content-title {
+        font-size: 2em;
+        color: #fff8e7;
+        margin-bottom: 20px;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
 
-
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-text {
-            color: #D4BFA8;
-            font-size: 0.95em;
-            opacity: 0.7;
-            font-style: italic;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 40px 25px;
-            }
-            
-            .title {
-                font-size: 2.2em;
-            }
-            
-            .prompt-text {
-                font-size: 1.4em;
-            }
-            
-            .sanctuary-button {
-                font-size: 1.1em;
-                padding: 25px 20px;
-            }
-        }
-
-        /* Smooth page transitions */
-        .page {
-            display: none;
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .content-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .back-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 15px 30px;
-            color: #FFF8E7;
-            font-size: 1.1em;
-            font-family: 'Georgia', serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 30px;
-            display: inline-block;
-        }
-
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(-5px);
-        }
-
-        .content-title {
-            font-size: 2em;
-            color: #FFF8E7;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        }
-
-        .content-text {
-            color: #E8D5C4;
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
+      .content-text {
+        color: #e8d5c4;
+        font-size: 1.1em;
+        line-height: 1.8;
+        margin-bottom: 15px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="your-inner-sanctuary.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Video Overlay -->
+    <div class="video-overlay"></div>
+
     <!-- Home Page -->
     <div class="page active" id="home">
-        <div class="container">
-            <div class="header">
-                <h1 class="title">Inner Sanctuary</h1>
-                <p class="subtitle">A safe space for your mind.</p>
-                <p class="tagline">Reconnect with yourself</p>
-            </div>
-            
-            <h2 class="prompt-text">I need to...</h2>
-            
-            <div class="buttons-grid">
-                <button class="sanctuary-button" onclick="navigate('focus')">Focus</button>
-                <button class="sanctuary-button" onclick="navigate('calm')">Calm my brain</button>
-                <button class="sanctuary-button" onclick="navigate('break')">Break a toxic behavior</button>
-                <button class="sanctuary-button" onclick="navigate('understand')">Understand myself better</button>
-                <button class="sanctuary-button" onclick="navigate('rewire')">Rewire my brain</button>
-                <button class="sanctuary-button" onclick="navigate('start')">Start my day well</button>
-                <button class="sanctuary-button" onclick="navigate('manifest')">Manifest my dream life</button>
-            </div>
-            
-            <div class="footer">
-                <p class="footer-text">Take a deep breath. You're exactly where you need to be.</p>
-            </div>
+      <div class="container">
+        <div class="header">
+          <h1 class="title">Inner Sanctuary</h1>
+          <p class="subtitle">Your safe space for the mind</p>
+          <p class="tagline">Reconnect with yourself</p>
         </div>
+
+        <h2 class="prompt-text">I need to...</h2>
+
+        <div class="buttons-grid">
+          <button class="sanctuary-button" onclick="navigate('focus')">
+            Focus
+          </button>
+          <button class="sanctuary-button" onclick="navigate('calm')">
+            Calm my brain
+          </button>
+          <button class="sanctuary-button" onclick="navigate('break')">
+            Break a toxic behavior
+          </button>
+          <button class="sanctuary-button" onclick="navigate('understand')">
+            Understand myself better
+          </button>
+          <button class="sanctuary-button" onclick="navigate('rewire')">
+            Rewire my brain
+          </button>
+          <button class="sanctuary-button" onclick="navigate('start')">
+            Start my day well
+          </button>
+          <button class="sanctuary-button" onclick="navigate('manifest')">
+            Manifest my dream life
+          </button>
+        </div>
+
+        <div class="footer">
+          <p class="footer-text">
+            Take a deep breath. You're exactly where you need to be.
+          </p>
+        </div>
+      </div>
     </div>
 
     <!-- Focus Page -->
     <div class="page" id="focus">
-        <div class="container">
-            <div class="content-card">
-                <h2 class="content-title">✨ Focus Zone</h2>
-                <p class="content-text">Welcome to your focus sanctuary. Here you'll find tools to help your mind settle into deep, productive work.</p>
-                <p class="content-text"><strong>Choose your focus tool:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>🎵 Focus music playlists</li>
-                    <li>⏱️ Pomodoro timer</li>
-                    <li>👥 Body doubling videos</li>
-                    <li>🧘 Quick grounding meditation</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">Your focus is sacred. Protect it gently.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">✨ Focus Zone</h2>
+            <p class="content-text">
+              Welcome to your focus sanctuary. Here you'll find tools to help
+              your mind settle into deep, productive work.
+            </p>
+            <p class="content-text"><strong>Choose your focus tool:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>🎵 Focus music playlists</li>
+              <li>⏱️ Pomodoro timer</li>
+              <li>👥 Body doubling videos</li>
+              <li>🧘 Quick grounding meditation</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              Your focus is sacred. Protect it gently.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <!-- Calm Page -->
     <div class="page" id="calm">
-        <div class="container" style="max-width: 1200px;">
-            <div class="content-card">
-                <h2 class="content-title">🌙 Calm Space</h2>
-                <p class="content-text">Your mind is racing. That's okay. Let's slow down together.</p>
-                <p class="content-text"><strong>Tools for peace:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>🎶 Calming soundscapes</li>
-                    <li>🧘‍♀️ Guided meditation sessions</li>
-                    <li>📝 Anxiety release journaling prompts</li>
-                    <li>💭 Talk with Claude AI</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">Breathe. You are safe here.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">🌙 Calm Space</h2>
+            <p class="content-text">
+              Your mind is racing. That's okay. Let's slow down together.
+            </p>
+            <p class="content-text"><strong>Tools for peace:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>🎶 Calming soundscapes</li>
+              <li>🧘‍♀️ Guided meditation sessions</li>
+              <li>📝 Anxiety release journaling prompts</li>
+              <li>💭 Talk with Claude AI</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              Breathe. You are safe here.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <!-- Other pages follow similar structure -->
     <div class="page" id="break">
-        <div class="container" style="max-width: 1200px;">
-            <div class="content-card">
-                <h2 class="content-title">🔓 Break Free</h2>
-                <p class="content-text">Ready to release what no longer serves you? This takes courage.</p>
-                <p class="content-text"><strong>Shadow work tools:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>🪞 Deep reflection prompts</li>
-                    <li>💬 Guided conversation with Claude AI</li>
-                    <li>📖 Pattern recognition exercises</li>
-                    <li>✍️ Behavior tracking journal</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">You are not your patterns. You can change.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">🔓 Break Free</h2>
+            <p class="content-text">
+              Ready to release what no longer serves you? This takes courage.
+            </p>
+            <p class="content-text"><strong>Shadow work tools:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>🪞 Deep reflection prompts</li>
+              <li>💬 Guided conversation with Claude AI</li>
+              <li>📖 Pattern recognition exercises</li>
+              <li>✍️ Behavior tracking journal</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              You are not your patterns. You can change.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <div class="page" id="understand">
-        <div class="container" style="max-width: 1200px;">
-            <div class="content-card">
-                <h2 class="content-title">🔍 Self Discovery</h2>
-                <p class="content-text">Who are you, really? Let's explore together.</p>
-                <p class="content-text"><strong>Discovery tools:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>💭 Deep conversation with Claude AI</li>
-                    <li>📝 Self-discovery journaling prompts</li>
-                    <li>🎯 Values clarification exercises</li>
-                    <li>🪞 Shadow work reflections</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">The answers you seek are already within you.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">🔍 Self Discovery</h2>
+            <p class="content-text">
+              Who are you, really? Let's explore together.
+            </p>
+            <p class="content-text"><strong>Discovery tools:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>💭 Deep conversation with Claude AI</li>
+              <li>📝 Self-discovery journaling prompts</li>
+              <li>🎯 Values clarification exercises</li>
+              <li>🪞 Shadow work reflections</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              The answers you seek are already within you.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <div class="page" id="rewire">
-        <div class="container" style="max-width: 1200px;">
-            <div class="content-card">
-                <h2 class="content-title">🧠 Rewire & Transform</h2>
-                <p class="content-text">Your brain is plastic. You can create new pathways.</p>
-                <p class="content-text"><strong>Rewiring tools:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>🎧 Affirmations & subliminals</li>
-                    <li>🧘 Meditation for neuroplasticity</li>
-                    <li>📖 Habit formation guides</li>
-                    <li>✨ Visualization exercises</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">Small, consistent changes create lasting transformation.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">🧠 Rewire & Transform</h2>
+            <p class="content-text">
+              Your brain is plastic. You can create new pathways.
+            </p>
+            <p class="content-text"><strong>Rewiring tools:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>🎧 Affirmations & subliminals</li>
+              <li>🧘 Meditation for neuroplasticity</li>
+              <li>📖 Habit formation guides</li>
+              <li>✨ Visualization exercises</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              Small, consistent changes create lasting transformation.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <div class="page" id="start">
-        <div class="container" style="max-width: 1200px;">
-            <div class="content-card">
-                <h2 class="content-title">🌅 Morning Sanctuary</h2>
-                <p class="content-text">How you start your day shapes everything that follows.</p>
-                <p class="content-text"><strong>Morning tools:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>☀️ Morning meditation & affirmations</li>
-                    <li>📝 Intention-setting prompts</li>
-                    <li>🎵 Energizing music</li>
-                    <li>🎯 Daily goal clarity exercises</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">Today is a gift. Start it with intention.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">🌅 Morning Sanctuary</h2>
+            <p class="content-text">
+              How you start your day shapes everything that follows.
+            </p>
+            <p class="content-text"><strong>Morning tools:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>☀️ Morning meditation & affirmations</li>
+              <li>📝 Intention-setting prompts</li>
+              <li>🎵 Energizing music</li>
+              <li>🎯 Daily goal clarity exercises</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              Today is a gift. Start it with intention.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <div class="page" id="manifest">
-        <div class="container" style="max-width: 1200px;">
-            <div class="content-card">
-                <h2 class="content-title">✨ Dream Weaver</h2>
-                <p class="content-text">Your dream life is not a fantasy. It's a blueprint waiting to be built.</p>
-                <p class="content-text"><strong>Manifestation tools:</strong></p>
-                <ul style="color: #E8D5C4; font-size: 1.1em; line-height: 2; margin-left: 20px;">
-                    <li>🎯 Vision clarity exercises</li>
-                    <li>📝 Scripting & journaling prompts</li>
-                    <li>🧘 Visualization meditations</li>
-                    <li>💭 Belief work with Claude AI</li>
-                </ul>
-                <p class="content-text" style="margin-top: 20px; font-style: italic;">You are the creator of your reality.</p>
-            </div>
-            <button class="back-button" onclick="navigate('home')">← Back to Sanctuary</button>
+      <div class="container" style="max-width: 1200px">
+        <div class="page-content-wrapper">
+          <div class="content-card">
+            <h2 class="content-title">✨ Dream Weaver</h2>
+            <p class="content-text">
+              Your dream life is not a fantasy. It's a blueprint waiting to be
+              built.
+            </p>
+            <p class="content-text"><strong>Manifestation tools:</strong></p>
+            <ul
+              style="
+                color: #e8d5c4;
+                font-size: 1.1em;
+                line-height: 2;
+                margin-left: 20px;
+              "
+            >
+              <li>🎯 Vision clarity exercises</li>
+              <li>📝 Scripting & journaling prompts</li>
+              <li>🧘 Visualization meditations</li>
+              <li>💭 Belief work with Claude AI</li>
+            </ul>
+            <p
+              class="content-text"
+              style="margin-top: 20px; font-style: italic"
+            >
+              You are the creator of your reality.
+            </p>
+          </div>
+          <button class="back-button" onclick="navigate('home')">
+            ← Back to Sanctuary
+          </button>
         </div>
+      </div>
     </div>
 
     <script>
-        function navigate(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+      function navigate(pageId) {
+        // Hide all pages
+        document.querySelectorAll(".page").forEach((page) => {
+          page.classList.remove("active");
+        });
+
+        // Show selected page
+        document.getElementById(pageId).classList.add("active");
+
+        // Smooth scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     </script>
-</body>
+  </body>
 </html>
