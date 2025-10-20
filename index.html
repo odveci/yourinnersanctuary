@@ -44,7 +44,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.4);
-        z-index: -1;
+        z-index: 0;
       }
 
       /* Animated shimmer effect on top of video */
@@ -83,9 +83,9 @@
       .container {
         max-width: 1200px;
         width: 100%;
-        padding: 60px 40px;
+        padding: 15px 40px 60px;
         position: relative;
-        z-index: 1;
+        z-index: 10;
       }
 
       .page-content-wrapper {
@@ -102,6 +102,7 @@
         border-radius: 20px;
         padding: 40px;
         border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 10px;
         margin-bottom: 20px;
         width: 100%;
       }
@@ -120,12 +121,13 @@
       .header {
         text-align: center;
         margin-bottom: 50px;
+        margin-top: -20px;
       }
 
       .title {
         font-size: 3em;
         color: #fff8e7;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
         text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
         letter-spacing: 2px;
         animation: glow 3s ease-in-out infinite;
@@ -157,7 +159,7 @@
 
       .prompt-text {
         text-align: center;
-        font-size: 1.8em;
+        font-size: 1.4em;
         color: #fff8e7;
         margin-bottom: 40px;
         font-weight: 300;
@@ -183,12 +185,12 @@
       .sanctuary-button {
         background: linear-gradient(
           135deg,
-          rgba(139, 115, 85, 0.2) 0%,
-          rgba(92, 64, 51, 0.15) 100%
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.08) 100%
         );
         backdrop-filter: blur(10px);
         border: 2px solid rgba(255, 255, 255, 0.2);
-        border-radius: 20px;
+        border-radius: 12px;
         padding: 15px 25px;
         color: #fff8e7;
         font-size: 1.1em;
@@ -199,6 +201,7 @@
         position: relative;
         overflow: hidden;
         box-shadow: 0 3px 15px rgba(255, 255, 255, 0.08);
+        letter-spacing: 0.5px;
       }
 
       .sanctuary-button::before {
@@ -219,12 +222,12 @@
       }
 
       .sanctuary-button:hover {
-        box-shadow: 0 5px 35px rgba(255, 255, 255, 0.35);
+        box-shadow: 0 1px 35px rgba(255, 255, 255, 0.35);
         border-color: rgba(255, 255, 255, 0.4);
         background: linear-gradient(
           135deg,
-          rgba(139, 115, 85, 0.25) 0%,
-          rgba(92, 64, 51, 0.2) 100%
+          rgba(255, 255, 255, 0.22) 0%,
+          rgba(255, 255, 255, 0.12) 100%
         );
       }
 
@@ -281,6 +284,27 @@
         display: block;
       }
 
+      .home-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 5px 20px;
+        color: #fff8e7;
+        font-size: 0.9em;
+        font-family: "Georgia", serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        margin-bottom: 5px;
+        margin-left: 5px;
+        letter-spacing: 0.5px;
+      }
+
+      .home-button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(-5px);
+      }
+
       .back-button {
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
@@ -291,13 +315,34 @@
         font-family: "Georgia", serif;
         cursor: pointer;
         transition: all 0.3s ease;
-        margin-top: 30px;
+        margin-top: 10px;
         display: inline-block;
       }
 
       .back-button:hover {
         background: rgba(255, 255, 255, 0.15);
         transform: translateX(-5px);
+      }
+
+      .next-button {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 15px 30px;
+        color: #fff8e7;
+        font-size: 1.1em;
+        font-family: "Georgia", serif;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        display: inline-block;
+        float: right;
+        letter-spacing: 0.5px;
+      }
+
+      .next-button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateX(5px);
       }
 
       .content-title {
@@ -307,11 +352,84 @@
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
       }
 
-      .content-text {
+      /* Smaller buttons for content pages */
+      .tool-button {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.04) 0%,
+          rgba(255, 255, 255, 0.04) 100%
+        );
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 13px 17px;
+        color: #fff8e7;
+        font-size: 1em;
+        font-family: "Georgia", serif;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(255, 255, 255, 0.08);
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 22px;
+        margin-left: auto;
+        margin-right: auto;
+        letter-spacing: 0.5px;
+      }
+
+      .tool-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .tool-button:hover {
+        box-shadow: 0 1px 10px rgba(255, 255, 255, 0.35);
+        border-color: rgba(255, 255, 255, 0.4);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0.06) 100%
+        );
+      }
+
+      .tool-button:active::before {
+        opacity: 1;
+      }
+
+      .tool-button:active {
+        transform: scale(0.98);
+      }
+
+      .content-text-top {
         color: #e8d5c4;
         font-size: 1.1em;
         line-height: 1.8;
         margin-bottom: 15px;
+      }
+
+      .content-text-bottom {
+        color: #e8d5c4;
+        font-size: 0.95em;
+        font-style: italic;
+        line-height: 1.8;
+        margin-top: 30px;
+        margin-bottom: 0px;
+        text-align: center;
       }
     </style>
   </head>
@@ -319,6 +437,7 @@
     <!-- Background Video -->
     <video autoplay muted loop playsinline id="bg-video">
       <source src="your-inner-sanctuary.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
     </video>
 
     <!-- Video Overlay -->
@@ -328,8 +447,8 @@
     <div class="page active" id="home">
       <div class="container">
         <div class="header">
-          <h1 class="title">Inner Sanctuary</h1>
-          <p class="subtitle">Your safe space for the mind</p>
+          <h1 class="title">Your Inner Sanctuary</h1>
+          <p class="subtitle">A safe space for your mind.</p>
           <p class="tagline">Reconnect with yourself</p>
         </div>
 
@@ -351,7 +470,7 @@
           <button class="sanctuary-button" onclick="navigate('rewire')">
             Rewire my brain
           </button>
-          <button class="sanctuary-button" onclick="navigate('start')">
+          <button class="sanctuary-button" onclick="navigate('morning')">
             Start my day well
           </button>
           <button class="sanctuary-button" onclick="navigate('manifest')">
@@ -371,35 +490,30 @@
     <div class="page" id="focus">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
-            <h2 class="content-title">✨ Focus Zone</h2>
-            <p class="content-text">
-              Welcome to your focus sanctuary. Here you'll find tools to help
+            <h2 class="content-title">Focus Zone 🎧</h2>
+            <p class="content-text-top">
+              Welcome to your focus sanctuary. Here you will find tools to help
               your mind settle into deep, productive work.
             </p>
-            <p class="content-text"><strong>Choose your focus tool:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>🎵 Focus music playlists</li>
-              <li>⏱️ Pomodoro timer</li>
-              <li>👥 Body doubling videos</li>
-              <li>🧘 Quick grounding meditation</li>
-            </ul>
-            <p
-              class="content-text"
-              style="margin-top: 20px; font-style: italic"
-            >
-              Your focus is sacred. Protect it gently.
+            <p class="content-text-top">
+              <strong>Choose your focus tool:</strong>
             </p>
+            <button class="tool-button">Focus music 🎵</button>
+            <button class="tool-button">Focus timer ⏱️</button>
+            <button class="tool-button">Body doubling videos 👥</button>
+            <button class="tool-button">
+              Meditation session for better focus 🧘🏻‍♀️
+            </button>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('manifest')">
+            ← Manifest ✨
+          </button>
+          <button class="next-button" onclick="navigate('calm')">
+            Calm Space 🧘🏻‍♀️ →
           </button>
         </div>
       </div>
@@ -409,216 +523,207 @@
     <div class="page" id="calm">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
-            <h2 class="content-title">🌙 Calm Space</h2>
-            <p class="content-text">
+            <h2 class="content-title">Calm Space 🧘🏻‍♀️</h2>
+            <p class="content-text-top">
               Your mind is racing. That's okay. Let's slow down together.
             </p>
-            <p class="content-text"><strong>Tools for peace:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>🎶 Calming soundscapes</li>
-              <li>🧘‍♀️ Guided meditation sessions</li>
-              <li>📝 Anxiety release journaling prompts</li>
-              <li>💭 Talk with Claude AI</li>
-            </ul>
-            <p
-              class="content-text"
-              style="margin-top: 20px; font-style: italic"
-            >
-              Breathe. You are safe here.
-            </p>
+            <p class="content-text-top"><strong>Tools for peace:</strong></p>
+            <button class="tool-button">🎶 Calming soundscapes</button>
+            <button class="tool-button">Guided meditation sessions 🧘🏻‍♀️</button>
+            <button class="tool-button">
+              Anxiety release journaling prompts 📝
+            </button>
+            <button class="tool-button">Talk with Claude AI 💭</button>
+            <p class="content-text-bottom">Breathe. You are safe here.</p>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('focus')">
+            ← Focus 🎧
+          </button>
+          <button class="next-button" onclick="navigate('break')">
+            Break Free ⛓️‍💥 →
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Other pages follow similar structure -->
+    <!-- Break Free Page -->
     <div class="page" id="break">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
-            <h2 class="content-title">🔓 Break Free</h2>
-            <p class="content-text">
+            <h2 class="content-title">Break Free ⛓️‍💥</h2>
+            <p class="content-text-top">
               Ready to release what no longer serves you? This takes courage.
             </p>
-            <p class="content-text"><strong>Shadow work tools:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>🪞 Deep reflection prompts</li>
-              <li>💬 Guided conversation with Claude AI</li>
-              <li>📖 Pattern recognition exercises</li>
-              <li>✍️ Behavior tracking journal</li>
-            </ul>
-            <p
-              class="content-text"
-              style="margin-top: 20px; font-style: italic"
-            >
+            <p class="content-text-top"><strong>Shadow work tools:</strong></p>
+            <button class="tool-button">Deep reflection prompts 🪞</button>
+            <button class="tool-button">
+              Guided conversation with Claude AI 💬
+            </button>
+            <button class="tool-button">
+              Pattern recognition exercises 📖
+            </button>
+            <button class="tool-button">✍️ Behavior tracking journalxx</button>
+            <p class="content-text-bottom">
               You are not your patterns. You can change.
             </p>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('calm')">
+            ← Calm Space 🧘🏻‍♀️
+          </button>
+          <button class="next-button" onclick="navigate('understand')">
+            Self Discovery 🔍 →
           </button>
         </div>
       </div>
     </div>
 
+    <!-- Understand Yourself Page -->
     <div class="page" id="understand">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
-            <h2 class="content-title">🔍 Self Discovery</h2>
-            <p class="content-text">
+            <h2 class="content-title">Self Discovery 🔍</h2>
+            <p class="content-text-top">
               Who are you, really? Let's explore together.
             </p>
-            <p class="content-text"><strong>Discovery tools:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>💭 Deep conversation with Claude AI</li>
-              <li>📝 Self-discovery journaling prompts</li>
-              <li>🎯 Values clarification exercises</li>
-              <li>🪞 Shadow work reflections</li>
-            </ul>
-            <p
-              class="content-text"
-              style="margin-top: 20px; font-style: italic"
-            >
+            <p class="content-text-top"><strong>Discovery tools:</strong></p>
+            <button class="tool-button">
+              Values clarification exercises 🎯
+            </button>
+            <button class="tool-button">
+              Self-discovery journaling prompts 📝
+            </button>
+            <button class="tool-button">
+              Deep conversation with Claude AI 💭
+            </button>
+            <button class="tool-button">Shadow work reflections 🪞</button>
+            <p class="content-text-bottom">
               The answers you seek are already within you.
             </p>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('break')">
+            ← Break Free ⛓️‍💥
+          </button>
+          <button class="next-button" onclick="navigate('rewire')">
+            Rewire 🧠 →
           </button>
         </div>
       </div>
     </div>
 
+    <!-- Rewire Page -->
     <div class="page" id="rewire">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
-            <h2 class="content-title">🧠 Rewire & Transform</h2>
-            <p class="content-text">
+            <h2 class="content-title">Rewire & Transform 🧠</h2>
+            <p class="content-text-top">
               Your brain is plastic. You can create new pathways.
             </p>
-            <p class="content-text"><strong>Rewiring tools:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>🎧 Affirmations & subliminals</li>
-              <li>🧘 Meditation for neuroplasticity</li>
-              <li>📖 Habit formation guides</li>
-              <li>✨ Visualization exercises</li>
-            </ul>
-            <p
-              class="content-text"
-              style="margin-top: 20px; font-style: italic"
-            >
+            <p class="content-text-top"><strong>Rewiring tools:</strong></p>
+            <button class="tool-button">
+              Confront your limiting beliefs 🪞
+            </button>
+            <button class="tool-button">Affirmations & subliminals 🎧</button>
+            <button class="tool-button">
+              Meditation for neuroplasticity 🧘🏻‍♀️
+            </button>
+            <button class="tool-button">Habit formation guides 📖</button>
+            <button class="tool-button">Visualization exercises 😌</button>
+            <p class="content-text-bottom">
               Small, consistent changes create lasting transformation.
             </p>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('understand')">
+            ← Self Discovery 🔍
+          </button>
+          <button class="next-button" onclick="navigate('morning')">
+            Morning Sanctuary 🌅 →
           </button>
         </div>
       </div>
     </div>
 
-    <div class="page" id="start">
+    <!-- Morning Page -->
+    <div class="page" id="morning">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
-            <h2 class="content-title">🌅 Morning Sanctuary</h2>
-            <p class="content-text">
+            <h2 class="content-title">Morning Sanctuary 🌅</h2>
+            <p class="content-text-top">
               How you start your day shapes everything that follows.
             </p>
-            <p class="content-text"><strong>Morning tools:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>☀️ Morning meditation & affirmations</li>
-              <li>📝 Intention-setting prompts</li>
-              <li>🎵 Energizing music</li>
-              <li>🎯 Daily goal clarity exercises</li>
-            </ul>
-            <p
-              class="content-text"
-              style="margin-top: 20px; font-style: italic"
-            >
+            <p class="content-text-top"><strong>Morning tools:</strong></p>
+            <button class="tool-button">Morning meditation 🧘🏻‍♀️</button>
+            <button class="tool-button">Affirmations 🌟</button>
+            <button class="tool-button">Intention-setting prompts 📝</button>
+            <button class="tool-button">🎵 Energizing music</button>
+            <button class="tool-button">Daily goal clarity exercises 🎯</button>
+            <p class="content-text-bottom">
               Today is a gift. Start it with intention.
             </p>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('rewire')">
+            ← Rewire 🧠
+          </button>
+          <button class="next-button" onclick="navigate('manifest')">
+            Manifest ✨ →
           </button>
         </div>
       </div>
     </div>
 
+    <!-- Manifest Page -->
     <div class="page" id="manifest">
       <div class="container" style="max-width: 1200px">
         <div class="page-content-wrapper">
+          <button class="home-button" onclick="navigate('home')">
+            Home 🏠
+          </button>
           <div class="content-card">
             <h2 class="content-title">✨ Dream Weaver</h2>
-            <p class="content-text">
+            <p class="content-text-top">
               Your dream life is not a fantasy. It's a blueprint waiting to be
               built.
             </p>
-            <p class="content-text"><strong>Manifestation tools:</strong></p>
-            <ul
-              style="
-                color: #e8d5c4;
-                font-size: 1.1em;
-                line-height: 2;
-                margin-left: 20px;
-              "
-            >
-              <li>🎯 Vision clarity exercises</li>
-              <li>📝 Scripting & journaling prompts</li>
-              <li>🧘 Visualization meditations</li>
-              <li>💭 Belief work with Claude AI</li>
-            </ul>
+            <p class="content-text-top">
+              <strong>Manifestation tools:</strong>
+            </p>
+            <button class="tool-button">🎯 Vision clarity exercises</button>
+            <button class="tool-button">
+              📝 Scripting & journaling prompts
+            </button>
+            <button class="tool-button">🧘 Visualization meditations</button>
+            <button class="tool-button">💭 Belief work with Claude AI</button>
             <p
-              class="content-text"
+              class="content-text-bottom"
               style="margin-top: 20px; font-style: italic"
             >
               You are the creator of your reality.
             </p>
           </div>
-          <button class="back-button" onclick="navigate('home')">
-            ← Back to Sanctuary
+          <button class="back-button" onclick="navigate('morning')">
+            ← Morning Sanctuary 🌅
+          </button>
+          <button class="next-button" onclick="navigate('focus')">
+            Focus 🎧 →
           </button>
         </div>
       </div>
